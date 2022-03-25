@@ -109,14 +109,14 @@ resource "aws_route_table_association" "mypubrouteassociation" {
 resource "aws_eip" "nateip" {
   vpc        = true
   depends_on = [aws_route_table_association.mypubrouteassociation]
-  instance   = aws_instance.automation_server.id
+  instance   = aws_instance.ubuntu.id
   tags = {
     Name = var.elastic_ip_name
   }
 }
 
 resource "aws_eip_association" "vm-eip-association" {
-  instance_id   = aws_instance.automation_server.id
+  instance_id   = aws_instance.ubuntu.id
   allocation_id = aws_eip.nateip.id
 }
 
@@ -234,7 +234,7 @@ resource "aws_db_subnet_group" "database-subnet-group" {
   }
 }
 resource "aws_db_instance" "automation_db" {
-  depends_on                            = [aws_instance.automation_server]
+  depends_on                            = [aws_instance.ubuntu]
   instance_class                        = var.db_instance_class
   allocated_storage                     = var.allocated_storage
   auto_minor_version_upgrade            = var.auto_minor_version_upgrade
