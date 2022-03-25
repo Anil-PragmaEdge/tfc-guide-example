@@ -5,9 +5,9 @@ output "instance_ami" {
 output "instance_arn" {
   value = aws_instance.ubuntu.arn
 }
-output "server_ip_address" {
-  value = aws_eip.nateip.address
-}
+# output "server_ip_address" {
+#   value = aws_eip.nateip.address
+# }
 output "vpc_id" {
   value = aws_vpc.automation_vpc.id
 }
